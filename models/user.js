@@ -22,11 +22,6 @@ const userSchema = Schema({
         type:Boolean, 
         default: false 
     },
-
-    documents: [{
-        type: String
-    }]
-
 })
 
 userSchema.method('toJSON', function() {
