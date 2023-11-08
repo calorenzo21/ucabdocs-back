@@ -6,6 +6,7 @@ const path     = require('path');
 const Sockets  = require('./sockets');
 const dbConnection = require('../database/config');
 const authRoutes = require('../routes/auth.js');
+const documentRoutes = require('../routes/document.js');
 
 class Server {
 
@@ -41,6 +42,7 @@ class Server {
 
         // API ENDPOINTS
         this.app.use( '/api/', authRoutes )
+        this.app.use( '/api/', documentRoutes)
 
     }
 

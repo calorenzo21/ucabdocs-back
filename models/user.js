@@ -21,7 +21,11 @@ const userSchema = Schema({
     online: { 
         type:Boolean, 
         default: false 
-    }
+    },
+
+    documents: [{
+        type: String
+    }]
 
 })
 
