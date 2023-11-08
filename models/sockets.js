@@ -1,4 +1,4 @@
-const { connectedUser } = require('../controllers/sockets')
+const { connectedUser, disconnectedUser } = require('../controllers/sockets')
 const { checkJWT } = require('../helpers/jwt')
 const Document = require('../models/document')
 const user = require('./user')
@@ -76,8 +76,8 @@ class Sockets {
             
             });
 
-            socket.on('disconnect', () => {
-                console.log('Cliente desconectado')
+            socket.on('disconnect', async () => {
+                await disconnectedUser( uid )
             })
             
         });
