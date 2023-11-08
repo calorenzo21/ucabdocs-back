@@ -5,7 +5,7 @@ const connectedUser = async ( uid ) => {
     const user = await User.findById(uid)
     user.online = true
     await user.save()
-    return user
+    return user.name
 }
 
 module.exports = {

@@ -23,10 +23,18 @@ class Sockets {
         // On connection
         this.io.on('connection', async ( socket ) => {
             
+            const [ valido, uid ] = checkJWT( socket.handshake.query['x-token'] )
+
+            if (!valido) {
+                console.log('socket no identificado')
+                return socket.disconnect()
+            }
+            
             socket.on('get-document', async ( documentID ) => {
                 const document = await findOrCreateDocument( documentID )
                 socket.join( documentID )
                 socket.emit("load-document", document.data)
+                socket.broadcast.to( documentID ).emit("active-user", await connectedUser( uid ))
                 
                 socket.on('send-changes', (delta) => {
                     socket.broadcast.to( documentID ).emit("receive-changes", delta)
