@@ -24,7 +24,7 @@ class Server {
         // Configuraciones de sockets
         this.io = socketio( this.server, { 
             cors: {
-                origin: "http://localhost:3000",
+                origin: "https://ucabdocs-v2.netlify.app",
                 methods: ["GET", "POST"]
             }
          } );
